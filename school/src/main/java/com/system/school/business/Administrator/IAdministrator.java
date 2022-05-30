@@ -18,7 +18,7 @@ public interface IAdministrator {
     public int deleteSchool(int id);
 
     // Classroom functions
-    public int addClassRoom(int id , int schoolId , ClassRoom classRoom);
+    public int addClassRoom(int schoolId , ClassRoom classRoom);
     public List<ClassRoom> getClassRooms(int schoolId);
     public int deleteClassRoom(int id , int schoolId);
 

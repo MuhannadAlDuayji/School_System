@@ -1,5 +1,6 @@
 package com.system.school.model.user;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.system.school.model.school.ClassRoom;
 import com.system.school.model.school.School;
 import lombok.*;
@@ -7,12 +8,8 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Data
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
     private Integer id;

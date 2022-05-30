@@ -12,10 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -36,11 +32,11 @@ public class AdministratorImpl implements IAdministrator{
     public int addSchool(School school) {
 
         if (school.getId() == 0){
-
             return jdbcTemplate.update(AdministratorQuery.ADD_SCHOOL , new Object[]{school.getSchoolName(),
                 "Muhannad", LocalDateTime.now()});
-        }else
-            return jdbcTemplate.update(AdministratorQuery.MOD_EXISTS_SCHOOL ,new Object[]{school.getSchoolName(),
+        }
+
+        return jdbcTemplate.update(AdministratorQuery.MOD_EXISTS_SCHOOL ,new Object[]{school.getSchoolName(),
                 "Yasser",LocalDateTime.now(),school.getId()});
     }
 
@@ -72,18 +68,24 @@ public class AdministratorImpl implements IAdministrator{
     }
 
     @Override
-    public int addClassRoom(int id, int schoolId, ClassRoom classRoom) {
-        return jdbcTemplate.update(AdministratorQuery.ADD_CLASSROOM, new Object[]{classRoom.getClassName() ,new Integer(schoolId),"Muhannad",new Date()});
+    public int addClassRoom(int schoolId, ClassRoom classRoom) {
+        return jdbcTemplate.update(AdministratorQuery.ADD_CLASSROOM,
+                new Object[]{classRoom.getClassName(), new Integer(schoolId),
+                        "Muhannad",
+                        new Date()});
     }
 
     @Override
-    public List<ClassRoom> getClassRooms(int classroomId) {
+    public List<ClassRoom> getClassRooms(int schoolId) {
+
+     //   return jdbcTemplate.update(AdministratorQuery.GET_CLASSROOM,schoolRowMapper,new Object[]{new Integer(schoolId)},);
         return null;
     }
 
     @Override
     public int deleteClassRoom(int id, int schoolId) {
-        return 0;
+        return jdbcTemplate.update(AdministratorQuery.DELETE_SCHOOL
+                ,new Object[]{new Integer(id)});
     }
 
     @Override
@@ -107,7 +109,8 @@ public class AdministratorImpl implements IAdministrator{
     }
     @Override
     public int deleteStudent(int id, int studentId, int school) {
-        return 0;
+        return jdbcTemplate.update(AdministratorQuery.DELETE_SCHOOL
+                ,new Object[]{new Integer(id)});
     }
     @Override
     public int addToTempRegistration(StudentRegistration studentRegistration) {
@@ -141,8 +144,6 @@ public class AdministratorImpl implements IAdministrator{
 
     @Override
     public int addRecord() {
-
-        jdbcTemplate.ex
 
         return 0;
     }

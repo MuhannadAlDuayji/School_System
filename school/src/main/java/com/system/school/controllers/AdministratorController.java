@@ -4,9 +4,11 @@ import com.system.school.business.Administrator.IAdministrator;
 import com.system.school.model.school.ClassRoom;
 import com.system.school.model.school.School;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -18,6 +20,17 @@ public class AdministratorController {
         this.administrator = administrator;
     }
 
+    @GetMapping("/getSchools")
+    public ModelMap getSchool(){
+
+        List<School> schoolList =  administrator.getSchools();
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("schoolList",schoolList);
+
+        return new ModelMap().addAttribute("data",data)
+                .addAttribute("successes",true);
+    }
     @PostMapping("/addSchool")
     public String addSchool(@RequestBody School school){
 
@@ -31,7 +44,7 @@ public class AdministratorController {
     }
 
     @GetMapping("/getSchool/{id}")
-    public School getSchool(@PathVariable("id") int id){
+    public ModelMap getSchool(@PathVariable("id") int id){
         School school = null;
         try {
             log.debug("Hello Muhannad ... "+id);
@@ -39,7 +52,10 @@ public class AdministratorController {
         }catch (Exception e){
             log.debug("Error happen ... "+e);
         }
-        return school;
+        Map<String,Object> attribute = new HashMap<>();
+
+        return new ModelMap().addAttribute("data",attribute )
+                .addAttribute("success", true);
     }
 
     @DeleteMapping("/deleteSchool/{id}")
@@ -70,7 +86,7 @@ public class AdministratorController {
         String response = "OK!!! ClassRoom Added to School ID = "+id;
         try {
 
-            this.administrator.addClassRoom(0,id,classRoom);
+           // this.administrator.addClassRoom(0,id,classRoom);
 
         }catch (Exception e){
             response =": ERROE :"+e;

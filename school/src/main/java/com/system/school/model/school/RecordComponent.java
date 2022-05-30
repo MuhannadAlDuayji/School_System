@@ -16,4 +16,6 @@ public class RecordComponent {
 	private Integer mark;
 	private Integer stage;
 
+    public void setId(int id) {
+    }
 }
