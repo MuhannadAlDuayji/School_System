@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DatabaseConfig {
+
     private String driverClassName;
     private String url;
     private String username;
@@ -16,4 +17,5 @@ public class DatabaseConfig {
     private int maxPoolSize;
     private int initialSize;
     private int activeSize;
+
 }

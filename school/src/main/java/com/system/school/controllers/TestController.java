@@ -1,6 +1,6 @@
 package com.system.school.controllers;
 
-import com.system.school.business.Administrator.IAdministrator;
+import com.system.school.business.administrator.IAdministrator;
 import com.system.school.model.school.StudentRegistration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

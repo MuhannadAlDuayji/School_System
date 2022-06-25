@@ -9,21 +9,30 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import com.github.javafaker.Faker;
+import com.sun.nio.zipfs.ZipFileStore;
 import com.system.school.model.school.ClassRoom;
 import com.system.school.model.school.School;
 import com.system.school.model.school.StudentRegistration;
 import com.system.school.model.user.User;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-import java.text.SimpleDateFormat;
-import java.time.*;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
+@PropertySource({"C:/Application/School_prop/jdbcTest.properties"})
 
 public class TestFake {
 
     static Faker  faker = new Faker();
-    static SimpleDateFormat desiredFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
     public static void main(String[] args) throws JsonProcessingException {
+
+        File aaa = new File("C:/Application/School_prop/jdbcTest.properties");
+        System.out.println(aaa.exists());
+
         Faker faker = new Faker();
         StudentRegistration studentRegistration = new StudentRegistration();
         studentRegistration.setFirstName(faker.programmingLanguage().name());
@@ -45,11 +54,7 @@ public class TestFake {
         System.out.println(studentRegistration.getCreatedAt().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         String tempSchool = s.writeValueAsString(school());
         System.out.println(tempSchool);
-        System.out.println("======================================");
-        System.out.println(s.writeValueAsString(school()));
-        System.out.println("======================================");
-        String result = desiredFormat.format(Date.from(Instant.now()));
-        System.out.println(result);
+
         Boolean aBoolean = new Boolean("") ;
         System.out.println(aBoolean);
         System.out.println(s.writeValueAsString(classRoom()));
@@ -66,9 +71,8 @@ public class TestFake {
         School school = new School();
 
         school.setSchoolName(faker.university().name());
-
-
-        school.setAddedAt(desiredFormat.format(faker.date().birthday()));
+        school.setAddedAt(faker.date().birthday().toString());
+        school.setManger(new User());
 
         return school;
     }

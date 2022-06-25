@@ -1,11 +1,9 @@
 package com.system.school.model.school;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.system.school.business.Administrator.rm.StudentRowMapper;
 import com.system.school.model.user.User;
 import lombok.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Data

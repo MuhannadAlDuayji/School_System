@@ -21,4 +21,5 @@ public class StudentRegistration {
     private Integer idParent;
     private Date createdAt;
     private String createdBy;
+
 }

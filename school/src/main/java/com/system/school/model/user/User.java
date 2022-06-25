@@ -17,7 +17,6 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private LocalDate dob;
-    private Integer schoolId;
 
     private Integer RoleId;
     private String JobTitle;

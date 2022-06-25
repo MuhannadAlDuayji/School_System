@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@PropertySource({"file:///${BAB_CTXRECON_CFG}/recon-integration/jdbcTest.properties"})
+@PropertySource({"C:/Application/School_prop/jdbcTest.properties"})
 @Configuration
 public class Configs {
 

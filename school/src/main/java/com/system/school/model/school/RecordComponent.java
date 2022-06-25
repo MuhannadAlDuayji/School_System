@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class RecordComponent {
 
+	private Integer id;
 	private Integer recordId;
 	private StringBuilder subject;
 	private StringBuilder from;
@@ -16,6 +17,5 @@ public class RecordComponent {
 	private Integer mark;
 	private Integer stage;
 
-    public void setId(int id) {
-    }
+
 }
